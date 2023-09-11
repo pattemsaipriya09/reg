@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <style>
+        *{
+            padding: 5;
+            padding-bottom: 0%;
+            box-sizing: border-box;
+            font-style: serif;
+        }
+       .container{
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color:rgb(220, 246, 255);
+    
+       
+       }
+        body{
+            background-color:rgba(32, 200, 172, 0.825);
+        }
+       input[type=text],[type=email],[type=password]{
+          
+           width: 100%;
+           height: 30px;
+           display: inline-block;
+           padding: 15px;
+           margin: 5px 0 22px 0;
+       }
+       h2{
+        text-align: center;
+        text-decoration: underline;
+        
+       }
+    </style>
+</head>
+<body>
+    <h2>Registration Form</h2>
+    <div class="container">
+    
+        
+    <form id="registrationForm" onsubmit="return validateForm()">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <span id="usernameError" style="color: red;"></span><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <span id="emailError" style="color: red;"></span><br>
+        
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required>
+        <span id="passwordError" style="color: red;"></span><br>
+        
+        <label for="confirmPassword">Confirm Password:</label><br>
+        <input type="password" id="confirmPassword" name="confirmPassword" required>
+        <span id="confirmPasswordError" style="color: red;"></span><br>
+        
+        <input type="submit" value="Register">
+    </form>
+</div>
+    <script>
+        function validateForm() {
+            let isValid = true;
+            const username = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+
+            const usernameError = document.getElementById("usernameError");
+            const emailError = document.getElementById("emailError");
+            const passwordError = document.getElementById("passwordError");
+            const confirmPasswordError = document.getElementById("confirmPasswordError");
+
+            usernameError.textContent = "";
+            emailError.textContent = "";
+            passwordError.textContent = "";
+            confirmPasswordError.textContent = "";
+
+            if (username.length < 4) {
+                usernameError.textContent = "Username must be at least 4 characters long.";
+                isValid = false;
+            }
+
+            if (!email.includes("@")) {
+                emailError.textContent = "Invalid email format.";
+                isValid = false;
+            }
+
+            if (password.length < 8) {
+                passwordError.textContent = "Password must be at least 8 characters long.";
+                isValid = false;
+            }
+
+            if (password !== confirmPassword) {
+                confirmPasswordError.textContent = "Passwords do not match.";
+                isValid = false;
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+</html>
